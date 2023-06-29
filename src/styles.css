@@ -1,0 +1,172 @@
+body {
+  font-family: sans-serif;
+}
+
+:root {
+  --transparent: rgba(255, 255, 255, 0);
+}
+
+img {
+  position: absolute;
+  top: 20px;
+}
+
+#butterfly {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 30px;
+}
+
+.head {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background: black;
+  border-radius: 70% 70% 50% 50%;
+  box-shadow: inset 0 0 20px rgba(136, 28, 28, 0.5);
+}
+
+.body {
+  background: black;
+  width: 40px;
+  height: 80px;
+  border-radius: 25px 25px 30px 30px;
+  position: relative;
+  z-index: 2;
+  box-shadow: inset 0 0 20px rgba(136, 28, 28, 0.5);
+}
+
+.tail {
+  background: black;
+  width: 40px;
+  height: 90px;
+  border-radius: 25px;
+  position: relative;
+  top: -10px;
+  z-index: 1;
+  box-shadow: inset 0 0 20px rgba(136, 28, 28, 0.5);
+}
+
+.tail::before {
+  content: "";
+  display: block;
+  background: linear-gradient(75deg, var(--transparent) 50%, black 51%);
+  width: 50%;
+  height: 70px;
+  position: absolute;
+  bottom: -58px;
+  z-index: 0;
+}
+
+.tail::after {
+  content: "";
+  display: block;
+  background: linear-gradient(-75deg, var(--transparent) 50%, black 51%);
+  width: 50%;
+  height: 70px;
+  position: absolute;
+  bottom: -58px;
+  left: 50%;
+  z-index: 0;
+}
+
+.wings {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+  left: 5px;
+  transition: all 2s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.wings * {
+  transition: all 2s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.wing1 {
+  background: black;
+  width: 340px;
+  height: 150px;
+  border-radius: 0% 65% 30% 100%;
+  transform: skewX(-20deg);
+  position: relative;
+  z-index: 1;
+  box-shadow: inset 0 0 100px rgb(66, 10, 107);
+  animation: fly 2s ease-in-out infinite;
+}
+
+@keyframes fly {
+  0% {
+    transform: skewX(-20deg);
+  }
+
+  30% {
+    transform: skewX(0deg);
+  }
+
+  60% {
+    transform: skewX(-20deg);
+  }
+
+  80% {
+    transform: skewX(0deg);
+  }
+
+  100% {
+    transform: skewX(-20deg);
+  }
+}
+
+.wing1::before {
+  content: "";
+  position: absolute;
+  background: black;
+  width: 100px;
+  height: 100px;
+  left: 60px;
+  bottom: -20px;
+  transform: rotate(270deg);
+  border-radius: 0 30% 0% 50%;
+  box-shadow: inset 50px 0 50px -20px rgb(66, 10, 107);
+  z-index: -1;
+}
+.wing1::after {
+  content: "";
+  background: black;
+  width: 6px;
+  height: 60px;
+  display: block;
+  position: absolute;
+  bottom: -70px;
+  left: 60px;
+  border-radius: 5px;
+  box-shadow: inset 0 0 100px rgb(66, 10, 107);
+}
+
+.wing2 {
+  background: black;
+  width: 300px;
+  height: 150px;
+  border-radius: 100% 0% 50% 0%;
+  position: relative;
+  left: -5px;
+  top: -20px;
+  z-index: 0;
+  box-shadow: inset 0 0 100px rgb(66, 10, 150);
+  animation: fly 2s ease-in-out infinite;
+}
+
+.wing2::after {
+  content: "";
+  background: white;
+}
+
+.center + .wings {
+  transform: rotateY(180deg);
+  left: -5px;
+}
